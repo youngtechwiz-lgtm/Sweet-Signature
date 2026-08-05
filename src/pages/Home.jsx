@@ -7,7 +7,6 @@ import {
   FiCalendar, 
   FiMapPin, 
   FiHeart, 
-  FiPlay, 
   FiStar, 
   FiShoppingBag, 
   FiSmile, 
@@ -34,15 +33,15 @@ const Home = () => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.story-card',
-        { y: 80, opacity: 0 },
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.2,
-          stagger: 0.2,
+          duration: 1,
+          stagger: 0.15,
           scrollTrigger: {
             trigger: storyRef.current,
-            start: 'top 75%',
+            start: 'top 80%',
           },
         }
       );
@@ -170,21 +169,21 @@ const Home = () => {
       </section>
 
       {/* 2. SERVICES & PROCUREMENT OVERVIEW */}
-      <section className="section-padding services-section" style={{ background: '#faf8f5' }}>
+      <section className="section-padding services-section">
         <div className="container">
           <div className="section-header">
             <h2>Our Signature Services & Procurement</h2>
             <p>From full event orchestration to direct global decor procurement, we bring visions to life.</p>
           </div>
 
-          <div className="story-grid">
+          <div className="services-grid">
             {servicesList.map((service, index) => (
-              <div className="story-card" key={index}>
-                <div style={{ fontSize: '2rem', color: '#c5a059', marginBottom: '1rem' }}>
+              <div className="service-card" key={index}>
+                <div className="service-icon">
                   {service.icon}
                 </div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{service.title}</h3>
-                <p style={{ color: '#666', fontSize: '0.9rem', lineHeight: '1.6' }}>{service.desc}</p>
+                <h3>{service.title}</h3>
+                <p>{service.desc}</p>
               </div>
             ))}
           </div>
@@ -266,20 +265,6 @@ const Home = () => {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
-
-      {/* 5. VIDEO EXPERIENCE SECTION */}
-      <section className="video-section">
-        <div className="video-container">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1600" alt="Video Preview" className="video-bg" />
-          <div className="video-overlay">
-            <button className="play-button" aria-label="Play Highlight Video">
-              <FiPlay />
-            </button>
-            <h2>Feel the Magic of a Sweet Signature Experience</h2>
-            <p>Click to watch our latest decor transformation and event reveal</p>
-          </div>
         </div>
       </section>
     </div>
