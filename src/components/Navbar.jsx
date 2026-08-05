@@ -22,15 +22,6 @@ const Navbar = () => {
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
-        {/* Logo */}
-        <Link to="/" className="navbar-logo">
-          <img src="/logo.png" alt="Sweet Signature Logo" className="navbar-logo-img" />
-          <div className="navbar-logo-text">
-            Sweet Signature
-            <span>Lagos</span>
-          </div>
-        </Link>
-
         {/* Navigation Menu */}
         <nav className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
           <NavLink to="/" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
