@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// Replaced FiSparkles with FiStar
 import { FiArrowUpRight, FiFilter, FiStar, FiHeart, FiMapPin } from 'react-icons/fi';
 import '../styles/Portfolio.css';
 
@@ -45,7 +44,6 @@ export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
-    // Safely check for window & GSAP ScrollTrigger before initializing
     if (typeof window !== 'undefined' && gsap) {
       gsap.registerPlugin(ScrollTrigger);
 
@@ -78,15 +76,7 @@ export default function Portfolio() {
       
       {/* HERO SECTION */}
       <header className="hero-bg">
-        <div className="portfolio-max-width portfolio-nav">
-          <Link to="/" className="brand-logo font-serif gold-gradient-text">
-            SWEET SIGNATURE
-          </Link>
-          <Link to="/contact" className="btn-cta-outline">
-            <span>Begin Your Story</span>
-            <FiArrowUpRight />
-          </Link>
-        </div>
+        {/* NOTE: Duplicate inline nav strip removed from here to prevent overlapping with App Navbar */}
 
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
