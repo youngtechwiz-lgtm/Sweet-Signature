@@ -1,101 +1,102 @@
+/* --- Base Styles --- */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 90px;
+  height: 80px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
-  transition: all 0.4s ease;
-  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Background change when scrolled */
 .navbar.scrolled {
-  height: 75px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .navbar-container {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  height: 100%;
+  width: 90%;
+  max-width: 1200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* --- Logo --- */
 .navbar-logo {
-  text-decoration: none;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 0.8rem;
+  gap: 12px;
+  text-decoration: none;
+  color: #1a1a1a;
 }
 
 .navbar-logo-img {
-  height: 50px;
-  width: auto;
-  transition: height 0.4s ease;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 }
 
-.navbar.scrolled .navbar-logo-img {
-  height: 42px;
-}
-
 .navbar-logo-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #1a1a1a;
   display: flex;
   flex-direction: column;
-  line-height: 1.15;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.2;
 }
 
 .navbar-logo-text span {
-  font-size: 0.6rem;
-  letter-spacing: 4px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #c5a059; /* Gold accent */
+  color: #888888;
 }
 
+/* --- Navigation Links --- */
 .nav-menu {
   display: flex;
-  gap: 2.5rem;
+  align-items: center;
+  gap: 32px;
 }
 
 .nav-link {
   text-decoration: none;
-  color: #2c2c2c;
+  color: #333333;
   font-weight: 500;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
   position: relative;
 }
 
-.nav-link.active, .nav-link:hover {
-  color: #c5a059;
+.nav-link:hover,
+.nav-link.active {
+  color: #d4a373; /* Primary theme color */
 }
 
+/* --- Action Button --- */
 .btn-primary-nav {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
+  padding: 10px 20px;
   background-color: #1a1a1a;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 30px;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .btn-primary-nav:hover {
-  background-color: #c5a059;
+  background-color: #d4a373;
+  transform: translateY(-2px);
 }
 
 .mobile-toggle {
@@ -103,21 +104,55 @@
   background: none;
   border: none;
   font-size: 1.8rem;
+  color: #1a1a1a;
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
-  .mobile-toggle { display: block; }
+.mobile-only-btn {
+  display: none;
+}
+
+/* --- Mobile Responsive Rules --- */
+@media screen and (max-width: 768px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .desktop-only-btn {
+    display: none;
+  }
+
+  .mobile-only-btn {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  /* Slide-down / Fullscreen overlay menu */
   .nav-menu {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 75%;
-    height: 100vh;
-    background: #fff;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: #ffffff;
     flex-direction: column;
-    padding: 6rem 2rem;
-    transition: right 0.4s ease;
+    justify-content: flex-start;
+    padding-top: 40px;
+    gap: 24px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
   }
-  .nav-menu.active { right: 0; }
+
+  /* Active state when burger menu is clicked */
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+  }
 }

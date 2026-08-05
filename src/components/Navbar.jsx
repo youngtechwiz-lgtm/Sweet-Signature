@@ -11,6 +11,10 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+
+    // Run once on mount to handle refreshes mid-page
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -18,6 +22,7 @@ const Navbar = () => {
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
+        {/* Logo */}
         <Link to="/" className="navbar-logo">
           <img src="/logo.png" alt="Sweet Signature Logo" className="navbar-logo-img" />
           <div className="navbar-logo-text">
@@ -26,29 +31,40 @@ const Navbar = () => {
           </div>
         </Link>
 
+        {/* Navigation Menu */}
         <nav className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
-          <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setMobileMenuOpen(false)}>
+          <NavLink to="/" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
             Home
           </NavLink>
-          <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setMobileMenuOpen(false)}>
+          <NavLink to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
             Our Story
           </NavLink>
-          <NavLink to="/services" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setMobileMenuOpen(false)}>
+          <NavLink to="/services" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
             Experiences
           </NavLink>
-          <NavLink to="/portfolio" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setMobileMenuOpen(false)}>
+          <NavLink to="/portfolio" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
             Portfolio
           </NavLink>
-          <NavLink to="/procurement" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} onClick={() => setMobileMenuOpen(false)}>
+          <NavLink to="/procurement" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
             Procurement
           </NavLink>
-        </nav>
-
-        <div className="navbar-actions">
-          <Link to="/contact" className="btn-primary-nav">
+          
+          {/* Mobile CTA (shown inside menu on small screens) */}
+          <Link to="/contact" className="btn-primary-nav mobile-only-btn" onClick={() => setMobileMenuOpen(false)}>
             Consultation <FiArrowRight />
           </Link>
-          <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        </nav>
+
+        {/* Actions */}
+        <div className="navbar-actions">
+          <Link to="/contact" className="btn-primary-nav desktop-only-btn">
+            Consultation <FiArrowRight />
+          </Link>
+          <button 
+            className="mobile-toggle" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
             {mobileMenuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
